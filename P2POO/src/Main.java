@@ -7,7 +7,11 @@ public class Main {
 
         while (true) {
             String[] options = {"Agregar Equipo", "Eliminar Equipo", "Buscar Equipo", "Listar Equipos", "Agregar Jugador", "Eliminar Jugador", "Buscar Jugador", "Listar Jugadores", "Simular Partido", "Salir"};
-            String option = (String) JOptionPane.showInputDialog(null, "Selecciona una opción", "Gestor de Equipos",JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+            
+            ImageIcon icon = new ImageIcon(Main.class.getResource("logoLOL.png"));
+
+            String option = (String) JOptionPane.showInputDialog(null, "Selecciona una opción", "Gestor de Equipos",
+                    JOptionPane.INFORMATION_MESSAGE, icon, options, options[0]);
 
             if (option == null || option.equals("Salir")) {
                 break;
