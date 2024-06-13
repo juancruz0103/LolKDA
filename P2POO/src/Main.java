@@ -46,10 +46,16 @@ public class Main {
                     equipo = gestor.buscarEquipo(nombreEquipo);
                     if (equipo != null) {
                         String nombreJugador = JOptionPane.showInputDialog("Nombre del jugador:");
-                        String posicion = JOptionPane.showInputDialog("Posición:");
-                        String rol = JOptionPane.showInputDialog("Rol (ADC, TOP, JUNGLA, SUPORT, MID):");
+                        String[] roles = {"ADC", "TOP", "JUNGLA", "SOPORTE", "MID"};
+                        int rolIndex = JOptionPane.showOptionDialog(null, "Selecciona el rol del jugador:", "Rol del Jugador",
+                                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, roles, roles[0]);
+                        if (rolIndex == -1) {
+                            JOptionPane.showMessageDialog(null, "No se seleccionó ningún rol. Operación cancelada.");
+                            break;
+                        }
+                        String rol = roles[rolIndex];
                         int edad = Integer.parseInt(JOptionPane.showInputDialog("Edad:"));
-                        Jugador jugador = new Jugador(nombreJugador, posicion, rol, edad);
+                        Jugador jugador = new Jugador(nombreJugador, rol, edad);
                         equipo.agregarJugador(jugador);
                     } else {
                         JOptionPane.showMessageDialog(null, "Equipo no encontrado.");
