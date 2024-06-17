@@ -56,7 +56,7 @@ public class Equipo {
     public String toString() {
         return "Equipo{" +
                 "nombre='" + nombre + '\'' +
-                ", ciudad='" + ciudad + '\'' +
+                ", pais='" + ciudad + '\'' +
                 ", jugadores=" + jugadores +
                 '}';
     }

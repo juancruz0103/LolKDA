@@ -4,6 +4,15 @@ import java.util.LinkedList;
 public class Main {
     public static void main(String[] args) {
         GestorEquipos gestor = new GestorEquipos();
+        gestor.getEquipos().add(new Equipo("SKT1","Korea"));
+        gestor.getEquipos().add(new Equipo("G2","Alemania"));
+        gestor.getEquipos().add(new Equipo("Fanatic","Europa"));
+        gestor.getEquipos().add(new Equipo("Cloud9","EEUU"));
+        gestor.getEquipos().add(new Equipo("Invictus","China"));
+        gestor.getEquipos().add(new Equipo("MAD Lions","España"));
+        gestor.getEquipos().add(new Equipo("FunPlus","China"));
+        gestor.getEquipos().add(new Equipo("JD","China"));
+        
 
         while (true) {
             String[] options = {"Agregar Equipo", "Eliminar Equipo", "Buscar Equipo", "Listar Equipos", "Agregar Jugador", "Eliminar Jugador", "Buscar Jugador", "Listar Jugadores", "Simular Partido", "Salir"};
@@ -20,7 +29,7 @@ public class Main {
             switch (option) {
                 case "Agregar Equipo":
                     String nombreEquipo = JOptionPane.showInputDialog("Nombre del equipo:");
-                    String ciudadEquipo = JOptionPane.showInputDialog("Ciudad del equipo:");
+                    String ciudadEquipo = JOptionPane.showInputDialog("Pais del equipo:");
                     Equipo equipo = new Equipo(nombreEquipo, ciudadEquipo);
                     gestor.agregarEquipo(equipo);
                     break;
