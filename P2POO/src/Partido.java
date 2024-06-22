@@ -20,11 +20,10 @@ public class Partido {
     }
 
     public void jugar() {
-        // Simulación básica, puede ser mejorada
         this.marcador1 = (int) (Math.random() * 10);
         this.marcador2 = (int) (Math.random() * 10);
 
-        // Determinar MVP
+        // Determinar MVP y KDA
         if (Math.random() < 0.5) {
             this.mvp = equipo1.getJugadores().get((int) (Math.random() * equipo1.getJugadores().size()));
         } else {

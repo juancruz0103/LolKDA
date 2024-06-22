@@ -92,7 +92,6 @@ public class Main {
                 case "Agregar Equipo":
                     String nombreEquipo = JOptionPane.showInputDialog("Nombre del equipo:");
                     String ciudadEquipo = JOptionPane.showInputDialog("Pais del equipo:");
-                    // String imagenEquipo = JOptionPane.showInputDialog("Nombre del archivo de la imagen del equipo:");
                     Equipo equipo = new Equipo(nombreEquipo, ciudadEquipo);
                     gestor.agregarEquipo(equipo);
                     break;

@@ -2,12 +2,12 @@ import java.util.LinkedList;
 
 public class Equipo {
     private String nombre;
-    private String ciudad;
+    private String pais;
     private LinkedList<Jugador> jugadores ;
 
     public Equipo(String nombre, String ciudad) {
 		this.nombre = nombre;
-		this.ciudad = ciudad;
+		this.pais = ciudad;
 		this.jugadores = new LinkedList<>();
 	}    
 
@@ -20,11 +20,11 @@ public class Equipo {
     }
 
     public String getCiudad() {
-        return ciudad;
+        return pais;
     }
 
     public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+        this.pais = ciudad;
     }
 
     public void agregarJugador(Jugador jugador) {
@@ -56,7 +56,7 @@ public class Equipo {
     public String toString() {
         return "Equipo{" +
                 "nombre='" + nombre + '\'' +
-                ", pais='" + ciudad + '\'' +
+                ", pais='" + pais + '\'' +
                 ", jugadores=" + jugadores +
                 '}';
     }
