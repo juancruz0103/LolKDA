@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 import javax.swing.*;
 
 public class Partido {
@@ -11,7 +13,15 @@ public class Partido {
     private int mvpKills;
     private int mvpDeaths;
     private int mvpAssists;
+    LocalDate fecha = LocalDate.now();
 
+    public Partido(Equipo equipo1, Equipo equipo2, int numPartido, LocalDate fecha) {
+        this.equipo1 = equipo1;
+        this.equipo2 = equipo2;
+        this.numPartido = numPartido;
+        this.fecha = fecha;
+    }
+    
     public Partido(Equipo equipo1, Equipo equipo2, String fase, int numPartido) {
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
@@ -40,7 +50,7 @@ public class Partido {
         String resultado = String.format("Fase: %s\nPartido %d\n%s %d - %d %s\n",
                 fase, numPartido, equipo1.getNombre(), marcador1, marcador2, equipo2.getNombre());
         resultado += String.format("MVP: %s (KDA: %d/%d/%d)", mvp.getNombre(), mvpKills, mvpDeaths, mvpAssists);
-        JOptionPane.showMessageDialog(null, resultado);
+        JOptionPane.showMessageDialog(null, resultado+"\nFecha: "+fecha);
     }
 
     public Equipo getGanador() {

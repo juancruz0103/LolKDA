@@ -1,7 +1,6 @@
 import javax.swing.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.*;
 
 public class Main {
     private static final String[] FASES = {"Cuartos de Final", "Semifinales", "Final"};
@@ -197,7 +196,7 @@ public class Main {
                     if (equiposTorneo.size() != 8) {
                         JOptionPane.showMessageDialog(null, "El torneo requiere exactamente 8 equipos.");
                     } else {
-                        iniciarTorneo(equiposTorneo);
+                    	GestorEquipos.iniciarTorneo(equiposTorneo);
                     }
                     break;
 
@@ -207,43 +206,5 @@ public class Main {
         }
     }
 
-    private static void iniciarTorneo(List<Equipo> equipos) {
-        List<Equipo> cuartosFinal = new ArrayList<>(equipos);
-        List<Equipo> semiFinal = new ArrayList<>();
-        List<Equipo> finalistas = new ArrayList<>();
-
-        // Cuartos
-        for (int i = 0; i < 4; i++) {
-            Equipo equipo1 = cuartosFinal.get(i * 2);
-            Equipo equipo2 = cuartosFinal.get(i * 2 + 1);
-            Partido partido = new Partido(equipo1, equipo2, FASES[0], i + 1);
-            partido.jugar();
-            Equipo ganador = partido.getGanador();
-            semiFinal.add(ganador);
-        }
-
-        // Semifinales
-        for (int i = 0; i < 2; i++) {
-            Equipo equipo1 = semiFinal.get(i * 2);
-            Equipo equipo2 = semiFinal.get(i * 2 + 1);
-            Partido partido = new Partido(equipo1, equipo2, FASES[1], i + 1);
-            partido.jugar();
-            Equipo ganador = partido.getGanador();
-            finalistas.add(ganador);
-        }
-
-        // Final
-        Equipo equipo1 = finalistas.get(0);
-        Equipo equipo2 = finalistas.get(1);
-        Partido partidoFinal = new Partido(equipo1, equipo2, FASES[2], 1);
-        partidoFinal.jugar();
-        Equipo campeon = partidoFinal.getGanador();
-
-        if (campeon != null) {
-            ImageIcon icon = new ImageIcon(Main.class.getResource("copa.jpg"));
-            JOptionPane.showMessageDialog(null, "El campeón del torneo es " + campeon.getNombre() + "!", "Campeón del Torneo", JOptionPane.INFORMATION_MESSAGE, icon);
-        } else {
-            JOptionPane.showMessageDialog(null, "El torneo terminó en empate.");
-        }
-    }
+    
 }
