@@ -35,15 +35,12 @@ public class GestorEquipos {
         List<Equipo> semiFinal = new ArrayList<>();
         List<Equipo> finalistas = new ArrayList<>();
         LocalDate fecha = LocalDate.of(2024, 4, 10);
-        int año = fecha.getYear();
-        int mes = fecha.getMonthValue();
-        int dia = fecha.getDayOfYear();        
 
         // Cuartos
         for (int i = 0; i < 4; i++) {
             Equipo equipo1 = cuartosFinal.get(i * 2);
             Equipo equipo2 = cuartosFinal.get(i * 2 + 1);
-            Partido partido = new Partido(equipo1, equipo2, i + 1, fecha);
+            Partido partido = new Partido(equipo1, equipo2, "Cuartos", i + 1, fecha.toString());
             partido.jugar();
             Equipo ganador = partido.getGanador();
             semiFinal.add(ganador);
@@ -54,7 +51,7 @@ public class GestorEquipos {
             Equipo equipo1 = semiFinal.get(i * 2);
             Equipo equipo2 = semiFinal.get(i * 2 + 1);
             LocalDate fechaModificada = fecha.plusMonths(1);
-            Partido partido = new Partido(equipo1, equipo2, i + 1, fechaModificada);
+            Partido partido = new Partido(equipo1, equipo2, "Semifinal", i + 1, fechaModificada.toString());
             partido.jugar();
             Equipo ganador = partido.getGanador();
             finalistas.add(ganador);
@@ -63,8 +60,8 @@ public class GestorEquipos {
         // Final
         Equipo equipo1 = finalistas.get(0);
         Equipo equipo2 = finalistas.get(1);
-        LocalDate fechaModificada = fecha.now();
-        Partido partidoFinal = new Partido(equipo1, equipo2, 1,fechaModificada);
+        LocalDate fechaFinal = LocalDate.now();
+        Partido partidoFinal = new Partido(equipo1, equipo2, "Final", 1, fechaFinal.toString());
         partidoFinal.jugar();
         Equipo campeon = partidoFinal.getGanador();
 

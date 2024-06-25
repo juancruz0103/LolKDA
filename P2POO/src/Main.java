@@ -129,50 +129,66 @@ public class Main {
                         }
                         String rol = roles[rolIndex];
                         int edad = Integer.parseInt(JOptionPane.showInputDialog("Edad:"));
-                        Jugador jugador = new Jugador(nombreJugador, rol, edad);
-                        equipoJugadores.agregarJugador(jugador);
+                        if (edad < 0) {
+                            JOptionPane.showMessageDialog(null, "La edad no puede ser negativa. Operación cancelada.");
+                        } else if (edad < 15) {
+                            JOptionPane.showMessageDialog(null, "El jugador debe tener al menos 15 años. Operación cancelada.");
+                        } else {
+                            Jugador jugador = new Jugador(nombreJugador, rol, edad);
+                            equipoJugadores.agregarJugador(jugador);
+                        }
                     } else {
                         JOptionPane.showMessageDialog(null, "Equipo no encontrado.");
                     }
                     break;
 
+
                 case "Eliminar Jugador":
-                    nombreEquipo = JOptionPane.showInputDialog("Nombre del equipo:");
-                    Equipo equipoEliminar = gestor.buscarEquipo(nombreEquipo);
-                    if (equipoEliminar != null) {
-                        String nombreJugador = JOptionPane.showInputDialog("Nombre del jugador a eliminar:");
-                        equipoEliminar.eliminarJugador(nombreJugador);
+                    String nombreJugadorEliminar = JOptionPane.showInputDialog("Nombre del jugador a eliminar:");
+                    boolean jugadorEliminado = false;
+                    for (Equipo Equipo : gestor.getEquipos()) {
+                        Jugador jugador = Equipo.buscarJugador(nombreJugadorEliminar);
+                        if (jugador != null) {
+                            Equipo.eliminarJugador(nombreJugadorEliminar);
+                            jugadorEliminado = true;
+                            break;
+                        }
+                    }
+                    if (jugadorEliminado) {
+                        JOptionPane.showMessageDialog(null, "Jugador eliminado correctamente.");
                     } else {
-                        JOptionPane.showMessageDialog(null, "Equipo no encontrado.");
+                        JOptionPane.showMessageDialog(null, "Jugador no encontrado.");
                     }
                     break;
 
                 case "Buscar Jugador":
-                    nombreEquipo = JOptionPane.showInputDialog("Nombre del equipo:");
-                    Equipo equipoBuscar = gestor.buscarEquipo(nombreEquipo);
-                    if (equipoBuscar != null) {
-                        String nombreJugador = JOptionPane.showInputDialog("Nombre del jugador a buscar:");
-                        Jugador jugadorEncontrado = equipoBuscar.buscarJugador(nombreJugador);
-                        JOptionPane.showMessageDialog(null, jugadorEncontrado != null ? jugadorEncontrado.toString() : "Jugador no encontrado.");
+                    String nombreJugadorBuscar = JOptionPane.showInputDialog("Nombre del jugador a buscar:");
+                    Jugador jugadorEncontrado = null;
+                    for (Equipo Equipo : gestor.getEquipos()) {
+                        jugadorEncontrado = Equipo.buscarJugador(nombreJugadorBuscar);
+                        if (jugadorEncontrado != null) {
+                            break;
+                        }
+                    }
+                    if (jugadorEncontrado != null) {
+                        JOptionPane.showMessageDialog(null, jugadorEncontrado.toString());
                     } else {
-                        JOptionPane.showMessageDialog(null, "Equipo no encontrado.");
+                        JOptionPane.showMessageDialog(null, "Jugador no encontrado.");
                     }
                     break;
 
                 case "Listar Jugadores":
-                    nombreEquipo = JOptionPane.showInputDialog("Nombre del equipo:");
-                    Equipo equipoListar = gestor.buscarEquipo(nombreEquipo);
-                    if (equipoListar != null) {
-                        LinkedList<Jugador> jugadoresList = equipoListar.getJugadores();
-                        StringBuilder jugadoresStr = new StringBuilder("Jugadores de " + equipoListar.getNombre() + ":\n");
-                        for (Jugador j : jugadoresList) {
-                            jugadoresStr.append(j.getNombre()).append(" - ").append(j.getRol()).append(" - ").append(j.getEdad()).append(" años\n");
+                    StringBuilder jugadoresStr = new StringBuilder("Jugadores:\n");
+                    for (Equipo Equipo : gestor.getEquipos()) {
+                        for (Jugador jugador : Equipo.getJugadores()) {
+                            jugadoresStr.append(jugador.getNombre()).append(" - ")
+                                        .append(jugador.getRol()).append(" - ")
+                                        .append(jugador.getEdad()).append(" años\n");
                         }
-                        JOptionPane.showMessageDialog(null, jugadoresStr.toString());
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Equipo no encontrado.");
                     }
+                    JOptionPane.showMessageDialog(null, jugadoresStr.toString());
                     break;
+
 
                 case "Simular Partido":
                     nombreEquipo = JOptionPane.showInputDialog("Nombre del primer equipo:");
