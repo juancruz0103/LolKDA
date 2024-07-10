@@ -1,5 +1,7 @@
 import java.time.LocalDate;
 import java.util.Random;
+
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Partido {
@@ -73,8 +75,11 @@ public class Partido {
         resultado += String.format("Primer dragón derrotado en el minuto %d\n", tiempoPrimerDragon);
         resultado += String.format("Barón realizado en el minuto %d\n", tiempoBaron);
         resultado += String.format("Tiempo total de la partida: %d minutos\n", tiempoTotal);
-        JOptionPane.showMessageDialog(null, resultado + "\nFecha: " + fecha);
+        Equipo ganador = getGanador();
+        ImageIcon icon = ganador.getLogo();
+        JOptionPane.showMessageDialog(null, resultado + "\nFecha: " + fecha, "Resultado del Partido", JOptionPane.INFORMATION_MESSAGE, icon);
     }
+    
     
     public Equipo getGanador() {
         return marcador1 > marcador2 ? equipo1 : equipo2;

@@ -1,6 +1,9 @@
 import java.time.LocalDate;
-import java.util.*;
-import javax.swing.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class GestorEquipos {
     private LinkedList<Equipo> equipos;
@@ -34,6 +37,8 @@ public class GestorEquipos {
         List<Equipo> cuartosFinal = new ArrayList<>(equipos);
         List<Equipo> semiFinal = new ArrayList<>();
         List<Equipo> finalistas = new ArrayList<>();
+        List<Equipo> ganadoresCuartos = new ArrayList<>();
+        List<Equipo> ganadoresSemis = new ArrayList<>();
         LocalDate fecha = LocalDate.of(2024, 4, 10);
 
         // Cuartos
@@ -44,6 +49,7 @@ public class GestorEquipos {
             partido.jugar();
             Equipo ganador = partido.getGanador();
             semiFinal.add(ganador);
+            ganadoresCuartos.add(ganador);
         }
 
         // Semifinales
@@ -55,6 +61,7 @@ public class GestorEquipos {
             partido.jugar();
             Equipo ganador = partido.getGanador();
             finalistas.add(ganador);
+            ganadoresSemis.add(ganador);
         }
 
         // Final
@@ -71,5 +78,24 @@ public class GestorEquipos {
         } else {
             JOptionPane.showMessageDialog(null, "El torneo terminó en empate.");
         }
+
+        mostrarResumenTorneo(ganadoresCuartos, ganadoresSemis, campeon);
+    }
+    
+    private static void mostrarResumenTorneo(List<Equipo> ganadoresCuartos, List<Equipo> ganadoresSemis, Equipo campeon) {
+        StringBuilder resumen = new StringBuilder("Resumen del Torneo:\n\n");
+
+        resumen.append("Ganadores de Cuartos de Final:\n");
+        for (Equipo equipo : ganadoresCuartos) {
+            resumen.append("- ").append(equipo.getNombre()).append("\n");
+        }
+        resumen.append("\nGanadores de Semifinales:\n");
+        for (Equipo equipo : ganadoresSemis) {
+            resumen.append("- ").append(equipo.getNombre()).append("\n");
+        }
+        resumen.append("\nGanador de la Final:\n");
+        resumen.append("- ").append(campeon.getNombre()).append("\n");
+
+        JOptionPane.showMessageDialog(null, resumen.toString(), "Resumen del Torneo", JOptionPane.INFORMATION_MESSAGE);
     }
 }

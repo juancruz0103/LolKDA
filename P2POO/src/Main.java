@@ -6,15 +6,15 @@ public class Main {
     private static final String[] FASES = {"Cuartos de Final", "Semifinales", "Final"};
 
     public static void main(String[] args) {
-        GestorEquipos gestor = new GestorEquipos();
-        Equipo skt1 = new Equipo("SKT1", "Korea");
-        Equipo g2 = new Equipo("G2", "Alemania");
-        Equipo fanatic = new Equipo("Fanatic", "Europa");
-        Equipo cloud9 = new Equipo("Cloud9", "EEUU");
-        Equipo invictus = new Equipo("Invictus", "China");
-        Equipo madLions = new Equipo("MAD Lions", "España");
-        Equipo funPlus = new Equipo("FunPlus", "China");
-        Equipo jd = new Equipo("JD", "China");
+    	GestorEquipos gestor = new GestorEquipos();
+        Equipo skt1 = new Equipo("SKT1", "Korea", "/skt1.jpg");
+        Equipo g2 = new Equipo("G2", "Alemania", "/g2.png");
+        Equipo fanatic = new Equipo("Fanatic", "Europa", "/fanatic.png");
+        Equipo cloud9 = new Equipo("Cloud9", "EEUU", "/cloud9.jpg");
+        Equipo invictus = new Equipo("Invictus", "China", "/invictus.png");
+        Equipo madLions = new Equipo("MAD Lions", "España", "/madLions.jpg");
+        Equipo funPlus = new Equipo("FunPlus", "China", "/funPlus.jpg");
+        Equipo jd = new Equipo("JD", "China", "/jd.png");
 
         skt1.agregarJugador(new Jugador("Faker", "MID", 24));
         skt1.agregarJugador(new Jugador("Teddy", "ADC", 22));
@@ -91,7 +91,7 @@ public class Main {
                 case "Agregar Equipo":
                     String nombreEquipo = JOptionPane.showInputDialog("Nombre del equipo:");
                     String ciudadEquipo = JOptionPane.showInputDialog("Pais del equipo:");
-                    Equipo equipo = new Equipo(nombreEquipo, ciudadEquipo);
+                    Equipo equipo = new Equipo(nombreEquipo, ciudadEquipo, null);
                     gestor.agregarEquipo(equipo);
                     break;
 
